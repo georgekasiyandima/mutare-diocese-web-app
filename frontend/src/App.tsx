@@ -4,6 +4,7 @@ import Header from './Header';
 import NavBar from './NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BishopsMessages from './BishopsMessages';
+import Footer from './Footer';
 
 const DioceseHistory = () => <div>Diocese History</div>;
 const Commissions = () => <div>Commissions</div>;
@@ -45,6 +46,7 @@ function App() {
             <Route path="/religious-orders" element={<ReligiousOrders />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

@@ -3,9 +3,8 @@ import './App.css';
 import Header from './Header';
 import NavBar from './NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BishopsMessages from './BishopsMessages';
 
-// Placeholder components for each page
-const BishopsMessages = () => <div>Bishop's Messages</div>;
 const DioceseHistory = () => <div>Diocese History</div>;
 const Commissions = () => <div>Commissions</div>;
 const ParishesDeaneries = () => <div>Parishes & Deaneries</div>;

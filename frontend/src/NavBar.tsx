@@ -27,9 +27,24 @@ const NavBar: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <AppBar position="static" color="default" elevation={1} style={{ background: 'rgba(255,255,255,0.95)' }}>
-      <Toolbar variant={isMobile ? 'dense' : 'regular'} style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
-        <Box display="flex" flexWrap="wrap" justifyContent="center" width="100%">
+    <AppBar
+      position="static"
+      color="default"
+      elevation={0}
+      style={{
+        background: 'rgba(255,255,255,0.85)',
+        backdropFilter: 'blur(8px)',
+        borderRadius: 16,
+        margin: '1rem auto 1.5rem auto',
+        maxWidth: 1200,
+        boxShadow: '0 2px 12px rgba(44,32,18,0.10)',
+      }}
+    >
+      <Toolbar
+        variant={isMobile ? 'dense' : 'regular'}
+        style={{ justifyContent: 'center', flexWrap: 'wrap', minHeight: isMobile ? 48 : 64 }}
+      >
+        <Box display="flex" flexWrap="wrap" justifyContent="center" width="100%" gap={isMobile ? 0.5 : 1.5}>
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -39,17 +54,24 @@ const NavBar: React.FC = () => {
               }
               style={{
                 textDecoration: 'none',
-                margin: '0.25rem 0.5rem',
+                margin: isMobile ? '0.15rem 0.25rem' : '0.25rem 0.75rem',
                 borderRadius: 8,
+                fontWeight: 600,
+                fontSize: isMobile ? '0.95rem' : '1.1rem',
+                position: 'relative',
+                paddingBottom: 4,
               }}
             >
               <Button
                 sx={{
                   color: '#333',
-                  fontWeight: 400,
-                  fontSize: isMobile ? '0.85rem' : '1rem',
+                  fontWeight: 600,
+                  fontSize: isMobile ? '0.95rem' : '1.1rem',
                   px: 2,
                   textTransform: 'none',
+                  background: 'transparent',
+                  boxShadow: 'none',
+                  position: 'relative',
                 }}
                 disableRipple
               >

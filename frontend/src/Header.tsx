@@ -15,9 +15,20 @@ const Header: React.FC = () => {
     <AppBar position="static" elevation={0} style={{ background: 'transparent', boxShadow: 'none' }}>
       <Toolbar className="header-root">
         <Box display="flex" alignItems="center">
-          <img src="/Logo Mutare Diocese.png" alt="Mutare Diocese Logo" className="header-logo" />
+          <img src="/Logo.png" alt="Mutare Diocese Logo" className="header-logo" style={{ objectFit: 'contain', maxHeight: '100%', maxWidth: '100%' }} />
         </Box>
-        <Typography variant={isMobile ? 'h6' : 'h4'} className="header-title">
+        <Typography
+          variant={isMobile ? 'h4' : 'h2'}
+          className="header-title"
+          style={{
+            fontFamily: 'Lora, Merriweather, serif',
+            fontWeight: 700,
+            fontSize: isMobile ? '2rem' : '3rem',
+            letterSpacing: '2px',
+            color: '#5C4033',
+            textShadow: '1px 2px 8px rgba(92,64,51,0.10)',
+          }}
+        >
           Catholic Diocese of Mutare
         </Typography>
         <Box display="flex" alignItems="center">

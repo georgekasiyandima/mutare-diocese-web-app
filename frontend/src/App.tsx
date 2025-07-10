@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BishopsMessages from './BishopsMessages';
 import Footer from './Footer';
+import Home from './Home';
 
 const DioceseHistory = () => <div>Diocese History</div>;
 const Commissions = () => <div>Commissions</div>;
@@ -33,7 +34,8 @@ function App() {
         <NavBar />
         <main style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
           <Routes>
-            <Route path="/" element={<BishopsMessages />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/bishops-messages" element={<BishopsMessages />} />
             <Route path="/history" element={<DioceseHistory />} />
             <Route path="/commissions" element={<Commissions />} />
             <Route path="/parishes-deaneries" element={<ParishesDeaneries />} />

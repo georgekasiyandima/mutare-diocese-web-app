@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import History from './History';
 import Home from './Home';
 import Footer from './Footer';
+import ContactUs from './ContactUs';
+import MutarePastoralCentre from './MutarePastoralCentre';
 import { Box, Card, Typography } from '@mui/material';
 
 // Bishop's Messages component
@@ -39,9 +41,7 @@ const ParishesDeaneries = () => <div>Parishes & Deaneries</div>;
 const MassBroadcastsMedia = () => <div>Mass Broadcasts & Media</div>;
 const GalleryGeneral = () => <div>Gallery General</div>;
 const ClericalGallery = () => <div>Clerical Gallery</div>;
-const ContactUs = () => <div>Contact Us</div>;
 const DiocesanFactory = () => <div>The Diocesan Factory (Claire Fashions)</div>;
-const MutarePastoralCentre = () => <div>Mutare Pastoral Centre</div>;
 const ReligiousOrders = () => <div>Religious Orders</div>;
 
 function App() {

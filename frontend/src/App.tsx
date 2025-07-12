@@ -3,11 +3,37 @@ import './App.css';
 import Header from './Header';
 import NavBar from './NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import BishopsMessages from './BishopsMessages';
-import Footer from './Footer';
+import History from './History';
 import Home from './Home';
+import Footer from './Footer';
+import { Box, Card, Typography } from '@mui/material';
 
-const DioceseHistory = () => <div>Diocese History</div>;
+// Bishop's Messages component
+const BishopsMessages = () => (
+  <Box sx={{ textAlign: 'center', py: 4 }}>
+    <Typography variant="h4" color="#5C4033" fontWeight={700} fontFamily="Lora, serif" mb={3}>
+      Bishop's Messages
+    </Typography>
+    <Typography variant="body1" color="text.secondary" mb={4}>
+      Welcome to the Bishop's Messages section. Here you will find spiritual guidance and messages from our current Bishop.
+    </Typography>
+    <Card sx={{ maxWidth: 800, mx: 'auto', p: 3, background: 'rgba(255,255,255,0.95)' }}>
+      <Typography variant="h6" color="#5C4033" fontWeight={600} mb={2}>
+        Latest Message from Bishop Paul Horan, O.Carm.
+      </Typography>
+      <Typography variant="body1" color="text.secondary" mb={3}>
+        "As we journey through this Jubilee Year 2025, let us remember that we are all 'Pilgrims of Hope'. 
+        May our faith guide us in serving our community with love and compassion."
+      </Typography>
+      <Typography variant="caption" color="#bfa14a" fontStyle="italic">
+        - Bishop Paul Horan, O.Carm.
+      </Typography>
+    </Card>
+  </Box>
+);
+
+// Placeholder components for each page
+const DioceseHistory = History;
 const Commissions = () => <div>Commissions</div>;
 const ParishesDeaneries = () => <div>Parishes & Deaneries</div>;
 const MassBroadcastsMedia = () => <div>Mass Broadcasts & Media</div>;

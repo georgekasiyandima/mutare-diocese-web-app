@@ -9,7 +9,8 @@ import { useTheme } from '@mui/material/styles';
 import './App.css';
 
 const navLinks = [
-  { label: "Bishop's Messages", path: "/" },
+  { label: 'Home', path: '/' },
+  { label: "Bishop's Messages", path: "/bishops-messages" },
   { label: 'Diocese History', path: '/history' },
   { label: 'Commissions', path: '/commissions' },
   { label: 'Parishes & Deaneries', path: '/parishes-deaneries' },
@@ -27,24 +28,9 @@ const NavBar: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <AppBar
-      position="static"
-      color="default"
-      elevation={0}
-      style={{
-        background: 'rgba(255,255,255,0.85)',
-        backdropFilter: 'blur(8px)',
-        borderRadius: 16,
-        margin: '1rem auto 1.5rem auto',
-        maxWidth: 1200,
-        boxShadow: '0 2px 12px rgba(44,32,18,0.10)',
-      }}
-    >
-      <Toolbar
-        variant={isMobile ? 'dense' : 'regular'}
-        style={{ justifyContent: 'center', flexWrap: 'wrap', minHeight: isMobile ? 48 : 64 }}
-      >
-        <Box display="flex" flexWrap="wrap" justifyContent="center" width="100%" gap={isMobile ? 0.5 : 1.5}>
+    <AppBar position="static" color="default" elevation={2} style={{ background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(8px)', borderRadius: 16, margin: '1rem auto', maxWidth: 1200, boxShadow: '0 4px 16px rgba(44,32,18,0.10)' }}>
+      <Toolbar variant={isMobile ? 'dense' : 'regular'} style={{ justifyContent: 'center', flexWrap: 'wrap', borderRadius: 16 }}>
+        <Box display="flex" flexWrap="wrap" justifyContent="center" width="100%" gap={1}>
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -54,24 +40,27 @@ const NavBar: React.FC = () => {
               }
               style={{
                 textDecoration: 'none',
-                margin: isMobile ? '0.15rem 0.25rem' : '0.25rem 0.75rem',
-                borderRadius: 8,
-                fontWeight: 600,
-                fontSize: isMobile ? '0.95rem' : '1.1rem',
-                position: 'relative',
-                paddingBottom: 4,
+                margin: '0.25rem 0.5rem',
+                borderRadius: 12,
+                transition: 'background 0.2s',
               }}
             >
               <Button
                 sx={{
                   color: '#333',
-                  fontWeight: 600,
-                  fontSize: isMobile ? '0.95rem' : '1.1rem',
-                  px: 2,
+                  fontWeight: 500,
+                  fontSize: isMobile ? '0.95rem' : '1.08rem',
+                  px: 2.5,
+                  py: 1.2,
+                  borderRadius: 12,
                   textTransform: 'none',
-                  background: 'transparent',
+                  backgroundColor: 'transparent',
                   boxShadow: 'none',
-                  position: 'relative',
+                  '&:hover': {
+                    backgroundColor: 'rgba(191,161,74,0.12)',
+                    color: '#bfa14a',
+                    boxShadow: '0 2px 8px rgba(191,161,74,0.08)',
+                  },
                 }}
                 disableRipple
               >

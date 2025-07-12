@@ -15,24 +15,29 @@ const Header: React.FC = () => {
     <AppBar position="static" elevation={0} style={{ background: 'transparent', boxShadow: 'none' }}>
       <Toolbar className="header-root">
         <Box display="flex" alignItems="center">
-          <img src="/Logo.png" alt="Mutare Diocese Logo" className="header-logo" style={{ objectFit: 'contain', maxHeight: '100%', maxWidth: '100%' }} />
+          <img src="/Logo.png" alt="Mutare Diocese Logo" className="header-logo" />
         </Box>
-        <Typography
-          variant={isMobile ? 'h4' : 'h2'}
-          className="header-title"
-          style={{
-            fontFamily: 'Lora, Merriweather, serif',
-            fontWeight: 700,
-            fontSize: isMobile ? '2rem' : '3rem',
-            letterSpacing: '2px',
-            color: '#5C4033',
-            textShadow: '1px 2px 8px rgba(92,64,51,0.10)',
-          }}
-        >
-          Catholic Diocese of Mutare
-        </Typography>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <Typography
+            variant={isMobile ? 'h5' : 'h3'}
+            sx={{
+              fontFamily: 'Lora, serif',
+              fontWeight: 800,
+              background: 'linear-gradient(90deg, #bfa14a 0%, #5C4033 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: '2px 4px 12px #5C4033',
+              letterSpacing: 1.5,
+              mb: 0.5,
+            }}
+            className="header-title"
+          >
+            Catholic Diocese of Mutare
+          </Typography>
+          <Box sx={{ width: 60, height: 4, background: 'linear-gradient(90deg, #bfa14a 0%, #5C4033 100%)', borderRadius: 2, mb: 1 }} />
+        </Box>
         <Box display="flex" alignItems="center">
-          <img src="/feast-day-carmerlites.jpg" alt="Feast Day Carmelites" className="header-logo-right" />
+          <img src="/Our_ladymc.png" alt="Feast Day Diocese" className="header-logo-right" />
         </Box>
       </Toolbar>
     </AppBar>

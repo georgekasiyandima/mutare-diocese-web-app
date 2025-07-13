@@ -7,17 +7,24 @@ import Grid from '@mui/material/Unstable_Grid2';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 
 const JUBILEE_IMAGES = Array.from({ length: 18 }, (_, i) => ({
   src: `/jubl${i + 1}.jpg`,
   alt: `Jubilee Pilgrimage of Hope Launch photo ${i + 1}`
 }));
 
+const VaticanJubileeURL = 'https://www.iubilaeum2025.va/en.html';
+
 const JubileePilgrimage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const openLightbox = (idx: number) => {
     setLightboxIndex(idx);
@@ -37,6 +44,17 @@ const JubileePilgrimage: React.FC = () => {
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [lightboxOpen]);
+
+  // Handler for external link dialog
+  const handleVaticanClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setDialogOpen(true);
+  };
+  const handleProceed = () => {
+    setDialogOpen(false);
+    window.open(VaticanJubileeURL, '_blank', 'noopener');
+  };
+  const handleCancel = () => setDialogOpen(false);
 
   return (
     <Box sx={{ maxWidth: { xs: '100vw', lg: 1200 }, mx: 'auto', overflowX: 'hidden', px: { xs: 2, sm: 4 } }}>
@@ -72,9 +90,71 @@ const JubileePilgrimage: React.FC = () => {
           >
             2025 is the Jubilee Holy Year, the 2,025th anniversary of the Incarnation of our Lord, an "event of great spiritual, ecclesial, and social significance in the life of the Church." The concept of "Jubilee" has its origins in the Book of Leviticus (chapter 25) as a special year of reconciliation, pilgrimage, and coming home. Pope Francis has designated the 2025 Holy Year as a time to renew ourselves as "Pilgrims of Hope."
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{ mt: 3, fontWeight: 600, borderRadius: 8, px: 4, py: 1.5 }}
+            onClick={handleVaticanClick}
+            aria-label="Visit the official Vatican Jubilee 2025 website"
+          >
+            Official Vatican Jubilee 2025 Website
+          </Button>
         </Box>
       </Box>
-
+      {/* External Link Dialog */}
+      <Dialog open={dialogOpen} onClose={handleCancel} aria-labelledby="external-link-dialog-title" aria-describedby="external-link-dialog-desc">
+        <DialogTitle id="external-link-dialog-title" sx={{ fontFamily: 'Lora, serif', color: '#5C4033', fontWeight: 700 }}>
+          Leaving Our Website
+        </DialogTitle>
+        <DialogContent id="external-link-dialog-desc" sx={{ fontFamily: 'Lora, serif', color: '#5C4033' }}>
+          <Typography sx={{ fontFamily: 'Lora, serif', color: '#5C4033' }}>
+            You are about to leave this website and visit the official Vatican Jubilee 2025 website (iubilaeum2025.va).<br />
+            This site contains rich resources about the Jubilee Year.<br /><br />
+            Do you wish to proceed?
+          </Typography>
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: 'center', pb: 2 }}>
+          <Button
+            onClick={handleCancel}
+            variant="outlined"
+            sx={{
+              color: '#5C4033',
+              borderColor: '#5C4033',
+              fontFamily: 'Lora, serif',
+              borderRadius: 2,
+              fontWeight: 600,
+              px: 3,
+              '&:hover': {
+                bgcolor: '#5C4033',
+                color: '#fff',
+                borderColor: '#5C4033',
+              },
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleProceed}
+            variant="contained"
+            autoFocus
+            sx={{
+              bgcolor: '#bfa14a',
+              color: '#fff',
+              fontFamily: 'Lora, serif',
+              borderRadius: 2,
+              fontWeight: 600,
+              px: 3,
+              boxShadow: 'none',
+              '&:hover': {
+                bgcolor: '#5C4033',
+                color: '#fff',
+              },
+            }}
+          >
+            Proceed
+          </Button>
+        </DialogActions>
+      </Dialog>
       {/* Gallery Section */}
       <Box sx={{ mb: { xs: 4, md: 6 } }}>
         <Typography

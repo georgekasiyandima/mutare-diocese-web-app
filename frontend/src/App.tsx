@@ -8,6 +8,7 @@ import Home from './Home';
 import Footer from './Footer';
 import ContactUs from './ContactUs';
 import MutarePastoralCentre from './MutarePastoralCentre';
+import JubileePilgrimage from './JubileePilgrimage';
 import { Box, Card, Typography } from '@mui/material';
 
 // Bishop's Messages component
@@ -72,6 +73,7 @@ function App() {
             <Route path="/factory" element={<DiocesanFactory />} />
             <Route path="/pastoral-centre" element={<MutarePastoralCentre />} />
             <Route path="/religious-orders" element={<ReligiousOrders />} />
+            <Route path="/jubilee-pilgrimage" element={<JubileePilgrimage />} />
           </Routes>
         </main>
         <Footer />

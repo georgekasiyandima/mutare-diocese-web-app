@@ -9,7 +9,9 @@ import Footer from './Footer';
 import ContactUs from './ContactUs';
 import MutarePastoralCentre from './MutarePastoralCentre';
 import JubileePilgrimage from './JubileePilgrimage';
+import News from './News';
 import { Box, Card, Typography } from '@mui/material';
+import WorkInProgress from './WorkInProgress';
 
 // Bishop's Messages component
 const BishopsMessages = () => (
@@ -37,13 +39,13 @@ const BishopsMessages = () => (
 
 // Placeholder components for each page
 const DioceseHistory = History;
-const Commissions = () => <div>Commissions</div>;
-const ParishesDeaneries = () => <div>Parishes & Deaneries</div>;
-const MassBroadcastsMedia = () => <div>Mass Broadcasts & Media</div>;
-const GalleryGeneral = () => <div>Gallery General</div>;
-const ClericalGallery = () => <div>Clerical Gallery</div>;
-const DiocesanFactory = () => <div>The Diocesan Factory (Claire Fashions)</div>;
-const ReligiousOrders = () => <div>Religious Orders</div>;
+const Commissions = () => <WorkInProgress message="Commissions Page Coming Soon" subtext="Information about diocesan commissions will be available here." />;
+const ParishesDeaneries = () => <WorkInProgress message="Parishes & Deaneries Page Coming Soon" subtext="Find details about parishes and deaneries here soon." />;
+const MassBroadcastsMedia = () => <WorkInProgress message="Mass Broadcasts & Media Coming Soon" subtext="Live and recorded Mass broadcasts and media will be featured here." />;
+const GalleryGeneral = () => <WorkInProgress message="Photo Gallery Coming Soon" subtext="A collection of diocesan photos will be available here." />;
+const ClericalGallery = () => <WorkInProgress message="Clerical Gallery Coming Soon" subtext="Meet our clergy and view their profiles here soon." />;
+const DiocesanFactory = () => <WorkInProgress message="Diocesan Factory (Claire Fashions) Coming Soon" subtext="Learn about our diocesan factory and its impact soon." />;
+const ReligiousOrders = () => <WorkInProgress message="Religious Orders Page Coming Soon" subtext="Information about religious orders in the diocese will be available here." />;
 
 function App() {
   return (
@@ -74,6 +76,7 @@ function App() {
             <Route path="/pastoral-centre" element={<MutarePastoralCentre />} />
             <Route path="/religious-orders" element={<ReligiousOrders />} />
             <Route path="/jubilee-pilgrimage" element={<JubileePilgrimage />} />
+            <Route path="/news" element={<News />} />
           </Routes>
         </main>
         <Footer />

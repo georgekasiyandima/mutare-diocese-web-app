@@ -6,95 +6,13 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import type { GridProps } from '@mui/material/Grid'; // Import GridProps for type assertion
-
-const FACTS = [
-  { label: 'Area', value: '32,202 km²' },
-  { label: 'Population', value: '1,675,000' },
-  { label: 'Catholics', value: '119,500' },
-  { label: 'Feast Day', value: 'Our Lady of Mount Carmel (16 July)' },
-];
-
-const TIMELINE = [
-  {
-    year: '1908',
-    title: 'First Mission at Triashill',
-    desc: 'German Marianhill missionaries establish the first mission at Triashill.',
-    img: '/Triashill.jpg',
-  },
-  {
-    year: '1953',
-    title: 'Prefecture Apostolic Created',
-    desc: 'Prefecture Apostolic of Umtali created, entrusted to the Irish Carmelites.',
-    img: '/Carmelites.jpg',
-  },
-  {
-    year: '1957',
-    title: 'Diocese Status & First Bishop',
-    desc: 'Prefecture raised to Diocese of Umtali. Donald Lamont appointed first Bishop.',
-    img: '/BishopL.jpg',
-  },
-  {
-    year: '1982',
-    title: 'Name Change',
-    desc: 'Diocese renamed to Diocese of Mutare.',
-    img: '/history1.jpg',
-  },
-  {
-    year: '1981–2016',
-    title: 'Bishop Alexio Muchabaiwa',
-    desc: 'Bishop Alexio Muchabaiwa leads the diocese.',
-    img: '/bishopMucha.jpg',
-  },
-  {
-    year: '2016–present',
-    title: 'Bishop Paul Horan',
-    desc: 'Bishop Paul Horan, O.Carm., is the current bishop.',
-    img: '/bishop.jpg',
-  },
-];
-
-const BISHOPS = [
-  {
-    name: 'Bishop Donald Lamont OCarm',
-    born: '27 July 1911',
-    died: '14 August 2003',
-    ordained: '11 July 1937',
-    consecrated: '16 June 1957',
-    retired: null,
-    image: '/bishop-dlamont.jpg',
-    wiki: 'https://en.wikipedia.org/wiki/Donal_Lamont',
-  },
-  {
-    name: 'Bishop Alexio Churu Muchabaiwa',
-    born: '21 June 1939',
-    died: '8 January 2024',
-    ordained: '24 August 1968',
-    consecrated: '21 February 1982',
-    retired: '28 May 2016',
-    image: '/bishopMucha.jpg',
-    wiki: 'https://en.wikipedia.org/wiki/Alexio_Churu_Muchabaiwa',
-  },
-  {
-    name: 'Bishop Paul Horan OCarm (Incumbent)',
-    born: '17 October 1962',
-    died: null,
-    ordained: null,
-    consecrated: '28 August',
-    retired: null,
-    image: '/bishop.jpg',
-    wiki: 'https://en.wikipedia.org/wiki/Paul_Horan',
-  },
-  {
-    name: 'Auxiliary Bishop Patrick Mumbure Mutume',
-    born: '31 October 1943',
-    died: '8 February 2017',
-    ordained: '1972',
-    consecrated: null,
-    retired: null,
-    image: '/BishopM.jpeg',
-    wiki: 'https://en.wikipedia.org/wiki/Patrick_Mumbure_Mutume',
-  },
-];
+import { 
+  DIOCESE_FACTS, 
+  DIOCESE_TIMELINE, 
+  DIOCESE_BISHOPS, 
+  DIOCESE_GEOGRAPHY, 
+  DIOCESE_EXTERNAL_LINKS 
+} from './constants/history';
 
 const History: React.FC = () => {
   return (
@@ -109,11 +27,16 @@ const History: React.FC = () => {
           justifyContent: 'center',
           flexDirection: 'column',
           background:
-            "linear-gradient(rgba(44,32,18,0.35), rgba(44,32,18,0.35)), url('/history1.jpg') center/cover no-repeat",
+            "linear-gradient(rgba(44,32,18,0.35), rgba(44,32,18,0.35)), url('/history1.jpg') center center/cover no-repeat",
           borderRadius: 4,
           boxShadow: 3,
           mb: 6,
           textAlign: 'center',
+          px: { xs: 2, md: 4 },
+          overflow: 'hidden',
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         <Typography
@@ -142,7 +65,7 @@ const History: React.FC = () => {
           Bishops of Mutare Diocese
         </Typography>
         <Grid container spacing={4} justifyContent="center">
-          {BISHOPS.map((bishop) => (
+          {DIOCESE_BISHOPS.map((bishop) => (
             <Grid
               item
               xs={12}
@@ -163,13 +86,33 @@ const History: React.FC = () => {
                   borderLeft: '5px solid #bfa14a',
                   borderRadius: 3,
                   minHeight: 420,
+                  height: '100%',
                 }}
               >
-                <img
-                  src={bishop.image}
-                  alt={bishop.name}
-                  style={{ width: 100, height: 100, objectFit: 'cover', borderRadius: 12, marginBottom: 16, boxShadow: '0 2px 8px #bfa14a55' }}
-                />
+                <Box sx={{ 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  alignItems: 'center', 
+                  mb: 2,
+                  width: 100,
+                  height: 100,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  backgroundColor: '#f5eee6',
+                  boxShadow: '0 2px 8px #bfa14a55'
+                }}>
+                  <img
+                    src={bishop.image}
+                    alt={bishop.name}
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'contain', 
+                      display: 'block',
+                      padding: '4px'
+                    }}
+                  />
+                </Box>
                 <Typography variant="h6" color="#5C4033" fontWeight={700} fontFamily="Lora, serif" align="center">
                   {bishop.name}
                 </Typography>
@@ -212,7 +155,7 @@ const History: React.FC = () => {
       {/* Quick Facts */}
       <Box mb={6}>
         <Grid container spacing={2} justifyContent="center">
-          {FACTS.map((fact) => (
+          {DIOCESE_FACTS.map((fact) => (
             <Grid
               item
               xs={12}
@@ -222,7 +165,17 @@ const History: React.FC = () => {
               key={fact.label}
               {...({ item: true } as GridProps)} // Type assertion for item prop
             >
-              <Card sx={{ background: 'rgba(255,255,255,0.95)', borderLeft: '5px solid #bfa14a', borderRadius: 2, boxShadow: 1 }}>
+              <Card sx={{ 
+                background: 'rgba(255,255,255,0.95)', 
+                borderLeft: '5px solid #bfa14a', 
+                borderRadius: 2, 
+                boxShadow: 1,
+                height: '100%',
+                minHeight: 120,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+              }}>
                 <CardContent>
                   <Typography variant="subtitle2" color="#5C4033" fontWeight={700} gutterBottom>
                     {fact.label}
@@ -243,7 +196,7 @@ const History: React.FC = () => {
           Timeline of the Diocese
         </Typography>
         <Grid container spacing={4} justifyContent="center">
-          {TIMELINE.map((event) => (
+          {DIOCESE_TIMELINE.map((event) => (
             <Grid
               item
               xs={12}
@@ -252,9 +205,43 @@ const History: React.FC = () => {
               key={event.year}
               {...({ item: true } as GridProps)} // Type assertion for item prop
             >
-              <Card sx={{ display: 'flex', alignItems: 'center', p: 2, background: 'rgba(255,255,255,0.98)', boxShadow: 2, borderLeft: '5px solid #bfa14a', borderRadius: 3 }}>
-                <img src={event.img} alt={event.title} style={{ width: 90, height: 90, objectFit: 'cover', borderRadius: 12, marginRight: 24 }} />
-                <Box>
+              <Card sx={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                p: 2, 
+                background: 'rgba(255,255,255,0.98)', 
+                boxShadow: 2, 
+                borderLeft: '5px solid #bfa14a', 
+                borderRadius: 3,
+                height: '100%',
+                minHeight: 140
+              }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  justifyContent: 'center', 
+                  alignItems: 'center',
+                  width: 90,
+                  height: 90,
+                  borderRadius: 12,
+                  overflow: 'hidden',
+                  backgroundColor: '#f5eee6',
+                  boxShadow: '0 2px 8px #bfa14a55',
+                  marginRight: 24,
+                  flexShrink: 0
+                }}>
+                  <img 
+                    src={event.img} 
+                    alt={event.title} 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'contain',
+                      display: 'block',
+                      padding: '4px'
+                    }} 
+                  />
+                </Box>
+                <Box sx={{ flex: 1 }}>
                   <Typography variant="h6" color="#5C4033" fontWeight={700} fontFamily="Lora, serif">
                     {event.year}
                   </Typography>
@@ -284,8 +271,8 @@ const History: React.FC = () => {
           Geographic Scope
         </Typography>
         <img
-          src="/Map.jpg"
-          alt="Map of Diocese of Mutare"
+          src={DIOCESE_GEOGRAPHY.mapImage}
+          alt={DIOCESE_GEOGRAPHY.mapAlt}
           style={{
             width: '100%',
             maxWidth: 500,
@@ -294,7 +281,7 @@ const History: React.FC = () => {
           }}
         />
         <Typography variant="body2" color="text.secondary" mt={1} align="center">
-          The Diocese covers Maungwe, Mutasa, Mutare, Nyanga, Chimanimani, and Chipinge districts.
+          {DIOCESE_GEOGRAPHY.description}
         </Typography>
       </Box>
 
@@ -306,7 +293,7 @@ const History: React.FC = () => {
         <Button
           variant="outlined"
           color="primary"
-          href="https://en.wikipedia.org/wiki/Roman_Catholic_Diocese_of_Mutare"
+          href={DIOCESE_EXTERNAL_LINKS.wikipedia}
           target="_blank"
           rel="noopener"
           sx={{ fontWeight: 600, borderRadius: 8 }}

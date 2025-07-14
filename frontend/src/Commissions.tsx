@@ -171,7 +171,7 @@ const Commissions: React.FC = () => {
                           }}
                         >
                           <img
-                            src={featuredCommission.logo}
+                            src={`/${featuredCommission.logo}`}
                             alt={`${featuredCommission.name} logo`}
                             style={{
                               maxWidth: '100%',
@@ -382,7 +382,7 @@ const Commissions: React.FC = () => {
                       }}
                     >
                       <img
-                        src={selectedCommission.logo}
+                        src={`/${selectedCommission.logo}`}
                         alt={`${selectedCommission.name} logo`}
                         style={{
                           width: '100%',
@@ -416,7 +416,7 @@ const Commissions: React.FC = () => {
               {selectedCommission.id === 'justice-peace' && selectedCommission.images.length > 0 && (
                 <Box sx={{ mb: 4 }}>
                   <img
-                    src={selectedCommission.images[0]}
+                    src={`/${selectedCommission.images[0]}`}
                     alt={`${selectedCommission.name} Banner`}
                     style={{
                       width: '100%',
@@ -588,7 +588,7 @@ const Commissions: React.FC = () => {
                       <Grid item xs={6} sm={4} md={3} key={index}>
                         <CardMedia
                           component="img"
-                          image={image}
+                          image={`/${image}`}
                           alt={`${selectedCommission.name} - Image ${index + 1}`}
                           sx={{
                             height: 120,
@@ -662,7 +662,7 @@ const Commissions: React.FC = () => {
           <DialogContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: 400 }}>
             <Box sx={{ width: '100%', textAlign: 'center', mb: 2 }}>
               <img
-                src={selectedCommission.images[galleryIndex]}
+                src={`/${selectedCommission.images[galleryIndex]}`}
                 alt={`${selectedCommission.name} Gallery Image ${galleryIndex + 1}`}
                 style={{
                   maxWidth: '100%',

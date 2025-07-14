@@ -4,6 +4,8 @@
   text-align: center;
   min-height: 100vh;
   /* Background image moved to inline style in App.tsx */
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 /* Modern header styles */
@@ -59,6 +61,23 @@
     height: 50px;
     max-width: 70px;
     margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .App {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+  .MuiCard-root {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.97rem;
+  }
+  .MuiTypography-h3, .MuiTypography-h4, .MuiTypography-h5 {
+    font-size: 1.2rem !important;
+  }
+  .MuiTypography-body1, .MuiTypography-body2 {
+    font-size: 0.97rem !important;
   }
 }
 

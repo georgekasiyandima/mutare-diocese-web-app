@@ -35,7 +35,6 @@ const JUBILEE_CAROUSEL_IMAGES = [
 const Home: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Box sx={{ maxWidth: 1400, mx: 'auto' }}>
@@ -152,6 +151,35 @@ const Home: React.FC = () => {
               }}
             >
               Contact Us
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              component={RouterLink}
+              to="/donate"
+              aria-label="Donate to Diocese Causes"
+              sx={{
+                fontWeight: 700,
+                borderRadius: 8,
+                bgcolor: '#bfa14a',
+                color: '#fff',
+                px: 4,
+                py: 1.5,
+                fontSize: { xs: '1rem', md: '1.15rem' },
+                boxShadow: '0 4px 16px rgba(191,161,74,0.18)',
+                textTransform: 'uppercase',
+                letterSpacing: 1,
+                ml: { xs: 0, md: 2 },
+                '&:hover': {
+                  bgcolor: '#a88d2a',
+                  color: '#fff',
+                  transform: 'translateY(-2px) scale(1.04)',
+                  boxShadow: '0 6px 18px rgba(191,161,74,0.25)',
+                  transition: 'all 0.3s ease'
+                }
+              }}
+            >
+              Donate Now
             </Button>
           </Box>
         </Box>

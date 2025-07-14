@@ -48,7 +48,6 @@ const SERVICES = [
 const MutarePastoralCentre: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
   const [selectedImage, setSelectedImage] = useState(0);
 
   return (
@@ -326,9 +325,9 @@ const MutarePastoralCentre: React.FC = () => {
           Book Your Event
         </Typography>
         
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={4} justifyContent="center" alignItems="stretch">
           <Grid xs={12} md={6}>
-            <Card sx={{ background: 'rgba(255,255,255,0.95)', boxShadow: 2 }}>
+            <Card sx={{ background: 'rgba(255,255,255,0.95)', boxShadow: 2, height: '100%' }}>
               <CardContent sx={{ p: { xs: 3, md: 4 } }}>
                 <Typography
                   variant="h6"
@@ -386,7 +385,7 @@ const MutarePastoralCentre: React.FC = () => {
           </Grid>
           
           <Grid xs={12} md={6}>
-            <Card sx={{ background: 'rgba(255,255,255,0.95)', boxShadow: 2 }}>
+            <Card sx={{ background: 'rgba(255,255,255,0.95)', boxShadow: 2, height: '100%' }}>
               <CardContent sx={{ p: { xs: 3, md: 4 } }}>
                 <Typography
                   variant="h6"

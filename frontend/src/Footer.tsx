@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
         boxSizing: 'border-box', // Ensure padding/margins don't cause overflow
       }}
     >
-      {/* Left: Logo and Contact Info */}
+      {/* Left: Flags, Logo and Contact Info */}
       <Box
         sx={{
           display: 'flex',
@@ -64,11 +64,16 @@ const Footer: React.FC = () => {
             Mutare Diocese
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <LocationOnIcon fontSize="small" sx={{ color: brown }} aria-hidden="true" />
-          <Typography variant="body2" color="text.secondary">
-            Bishop's House, Marymount Road, P.O. Box 47, Mutare
-          </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+          <LocationOnIcon fontSize="small" sx={{ color: brown, mt: 0.5 }} aria-hidden="true" />
+          <Box>
+            <Typography variant="body2" color="text.secondary">
+              Bishop's House, Marymount Road
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              P.O. Box 47, Mutare
+            </Typography>
+          </Box>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <PhoneIcon fontSize="small" sx={{ color: brown }} aria-hidden="true" />

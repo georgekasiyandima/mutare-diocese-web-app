@@ -20,6 +20,7 @@ const navLinks = [
   { label: "Bishop's Messages", path: "/bishops-messages" },
   { label: 'Diocese History', path: '/history' },
   { label: 'Commissions', path: '/commissions' },
+  { label: 'Vocations', path: '/vocations' },
   { label: 'Parishes & Deaneries', path: '/parishes-deaneries' },
   { label: 'Mass Broadcasts & Media', path: '/mass-broadcasts-media' },
   { label: 'Gallery General', path: '/gallery-general' },

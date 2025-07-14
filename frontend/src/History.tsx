@@ -37,27 +37,27 @@ const History: React.FC = () => {
           backgroundPosition: 'center center',
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <Typography
-          variant="h3"
-          color="#fff"
-          fontWeight={700}
-          fontFamily="'Lora', serif"
+          }}
+        >
+          <Typography
+            variant="h3"
+            color="#fff"
+            fontWeight={700}
+            fontFamily="'Lora', serif"
           sx={{ textShadow: '2px 4px 12px #5C4033', mt: 4 }}
-        >
-          History of the Diocese of Mutare
-        </Typography>
-        <Typography
-          variant="h6"
-          color="#fff"
-          mt={2}
-          mb={3}
-          sx={{ textShadow: '1px 2px 8px #5C4033' }}
-        >
-          From humble beginnings to a vibrant Catholic community in Manicaland.
-        </Typography>
-      </Box>
+          >
+            History of the Diocese of Mutare
+          </Typography>
+          <Typography
+            variant="h6"
+            color="#fff"
+            mt={2}
+            mb={3}
+            sx={{ textShadow: '1px 2px 8px #5C4033' }}
+          >
+            From humble beginnings to a vibrant Catholic community in Manicaland.
+          </Typography>
+        </Box>
 
       {/* Bishop Cards Section */}
       <Box mb={6}>

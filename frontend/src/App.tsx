@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './Header';
 import NavBar from './NavBar';
@@ -10,8 +10,13 @@ import ContactUs from './ContactUs';
 import MutarePastoralCentre from './MutarePastoralCentre';
 import JubileePilgrimage from './JubileePilgrimage';
 import News from './News';
-import { Box, Card, Typography } from '@mui/material';
+import Commissions from './Commissions';
+import { Box, Card, Typography, Fab, Zoom } from '@mui/material';
+import { KeyboardArrowUp } from '@mui/icons-material';
 import WorkInProgress from './WorkInProgress';
+import ErrorBoundary from './ErrorBoundary';
+import Breadcrumbs from './Breadcrumbs';
+import Vocations from './Vocations';
 
 // Bishop's Messages component
 const BishopsMessages = () => (
@@ -39,7 +44,6 @@ const BishopsMessages = () => (
 
 // Placeholder components for each page
 const DioceseHistory = History;
-const Commissions = () => <WorkInProgress message="Commissions Page Coming Soon" subtext="Information about diocesan commissions will be available here." />;
 const ParishesDeaneries = () => <WorkInProgress message="Parishes & Deaneries Page Coming Soon" subtext="Find details about parishes and deaneries here soon." />;
 const MassBroadcastsMedia = () => <WorkInProgress message="Mass Broadcasts & Media Coming Soon" subtext="Live and recorded Mass broadcasts and media will be featured here." />;
 const GalleryGeneral = () => <WorkInProgress message="Photo Gallery Coming Soon" subtext="A collection of diocesan photos will be available here." />;
@@ -48,40 +52,84 @@ const DiocesanFactory = () => <WorkInProgress message="Diocesan Factory (Claire 
 const ReligiousOrders = () => <WorkInProgress message="Religious Orders Page Coming Soon" subtext="Information about religious orders in the diocese will be available here." />;
 
 function App() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
-    <Router>
-      <div
-        className="App"
-        style={{
-          minHeight: '100vh',
-          background:
-            "linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/feast-day-carmerlites.jpg') no-repeat center center fixed",
-          backgroundSize: 'cover',
-        }}
-      >
-        <Header />
-        <NavBar />
-        <main style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/bishops-messages" element={<BishopsMessages />} />
-            <Route path="/history" element={<DioceseHistory />} />
-            <Route path="/commissions" element={<Commissions />} />
-            <Route path="/parishes-deaneries" element={<ParishesDeaneries />} />
-            <Route path="/mass-broadcasts-media" element={<MassBroadcastsMedia />} />
-            <Route path="/gallery-general" element={<GalleryGeneral />} />
-            <Route path="/clerical-gallery" element={<ClericalGallery />} />
-            <Route path="/contact" element={<ContactUs />} />
-            <Route path="/factory" element={<DiocesanFactory />} />
-            <Route path="/pastoral-centre" element={<MutarePastoralCentre />} />
-            <Route path="/religious-orders" element={<ReligiousOrders />} />
-            <Route path="/jubilee-pilgrimage" element={<JubileePilgrimage />} />
-            <Route path="/news" element={<News />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+    <ErrorBoundary>
+      <Router>
+        <div
+          className="App"
+          style={{
+            minHeight: '100vh',
+            background:
+              "linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/feast-day-carmerlites.jpg') no-repeat center center fixed",
+            backgroundSize: 'cover',
+          }}
+        >
+          <Header />
+          <NavBar />
+          <main style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
+            <Breadcrumbs />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/bishops-messages" element={<BishopsMessages />} />
+              <Route path="/history" element={<DioceseHistory />} />
+              <Route path="/commissions" element={<Commissions />} />
+              <Route path="/parishes-deaneries" element={<ParishesDeaneries />} />
+              <Route path="/mass-broadcasts-media" element={<MassBroadcastsMedia />} />
+              <Route path="/gallery-general" element={<GalleryGeneral />} />
+              <Route path="/clerical-gallery" element={<ClericalGallery />} />
+              <Route path="/contact" element={<ContactUs />} />
+              <Route path="/factory" element={<DiocesanFactory />} />
+              <Route path="/pastoral-centre" element={<MutarePastoralCentre />} />
+              <Route path="/religious-orders" element={<ReligiousOrders />} />
+              <Route path="/jubilee-pilgrimage" element={<JubileePilgrimage />} />
+              <Route path="/news" element={<News />} />
+              <Route path="/vocations" element={<Vocations />} />
+            </Routes>
+          </main>
+          <Footer />
+          
+          {/* Scroll to Top Button */}
+          <Zoom in={showScrollTop}>
+            <Fab
+              color="primary"
+              size="medium"
+              onClick={scrollToTop}
+              sx={{
+                position: 'fixed',
+                bottom: 24,
+                right: 24,
+                zIndex: 1000,
+                bgcolor: '#5C4033',
+                '&:hover': {
+                  bgcolor: '#4a3329'
+                }
+              }}
+              aria-label="Scroll to top"
+            >
+              <KeyboardArrowUp />
+            </Fab>
+          </Zoom>
+        </div>
+      </Router>
+    </ErrorBoundary>
   );
 }
 

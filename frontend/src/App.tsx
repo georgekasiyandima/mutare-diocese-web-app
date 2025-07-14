@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext, useMemo } from 'react';
 import './App.css';
 import Header from './Header';
 import NavBar from './NavBar';
@@ -11,12 +11,40 @@ import MutarePastoralCentre from './MutarePastoralCentre';
 import JubileePilgrimage from './JubileePilgrimage';
 import News from './News';
 import Commissions from './Commissions';
-import { Box, Card, Typography, Fab, Zoom } from '@mui/material';
+import Donate from './Donate';
+import { Box, Card, Typography, Fab, Zoom, ThemeProvider, CssBaseline } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
 import WorkInProgress from './WorkInProgress';
 import ErrorBoundary from './ErrorBoundary';
 import Breadcrumbs from './Breadcrumbs';
 import Vocations from './Vocations';
+import { getTheme } from './theme';
+
+export const ColorModeContext = createContext({ toggleColorMode: () => {}, mode: 'light' });
+type TranslationKey = 'home' | 'donate' | 'contact' | 'welcome' | 'donateNow';
+
+export const TranslationContext = createContext({
+  lang: 'en',
+  setLang: (_: 'en' | 'sh') => {},
+  t: (key: TranslationKey): string => key
+});
+
+const translations: Record<'en' | 'sh', Record<TranslationKey, string>> = {
+  en: {
+    home: 'Home',
+    donate: 'Donate',
+    contact: 'Contact Us',
+    welcome: 'Welcome to the Catholic Diocese of Mutare',
+    donateNow: 'Donate Now',
+  },
+  sh: {
+    home: 'Imba',
+    donate: 'Pira',
+    contact: 'Taura nesu',
+    welcome: 'Kugamuchirwa kuDiocese yeMutare',
+    donateNow: 'Pira Zvino',
+  },
+};
 
 // Bishop's Messages component
 const BishopsMessages = () => (
@@ -53,12 +81,26 @@ const ReligiousOrders = () => <WorkInProgress message="Religious Orders Page Com
 
 function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [mode, setMode] = useState<'light' | 'dark'>(() => {
+    return (localStorage.getItem('colorMode') as 'light' | 'dark') || 'light';
+  });
+  const [lang, setLangState] = useState<'en' | 'sh'>('en');
+  const setLang = (value: 'en' | 'sh') => setLangState(value);
+  const t = (key: TranslationKey) => translations[lang][key] || key;
+
+  useEffect(() => {
+    localStorage.setItem('colorMode', mode);
+  }, [mode]);
+
+  const colorMode = useMemo(() => ({
+    toggleColorMode: () => setMode((prev) => (prev === 'light' ? 'dark' : 'light')),
+    mode,
+  }), [mode]);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 400);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -71,65 +113,74 @@ function App() {
   };
 
   return (
-    <ErrorBoundary>
-      <Router>
-        <div
-          className="App"
-          style={{
-            minHeight: '100vh',
-            background:
-              "linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/feast-day-carmerlites.jpg') no-repeat center center fixed",
-            backgroundSize: 'cover',
-          }}
-        >
-          <Header />
-          <NavBar />
-          <main style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
-            <Breadcrumbs />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/bishops-messages" element={<BishopsMessages />} />
-              <Route path="/history" element={<DioceseHistory />} />
-              <Route path="/commissions" element={<Commissions />} />
-              <Route path="/parishes-deaneries" element={<ParishesDeaneries />} />
-              <Route path="/mass-broadcasts-media" element={<MassBroadcastsMedia />} />
-              <Route path="/gallery-general" element={<GalleryGeneral />} />
-              <Route path="/clerical-gallery" element={<ClericalGallery />} />
-              <Route path="/contact" element={<ContactUs />} />
-              <Route path="/factory" element={<DiocesanFactory />} />
-              <Route path="/pastoral-centre" element={<MutarePastoralCentre />} />
-              <Route path="/religious-orders" element={<ReligiousOrders />} />
-              <Route path="/jubilee-pilgrimage" element={<JubileePilgrimage />} />
-              <Route path="/news" element={<News />} />
-              <Route path="/vocations" element={<Vocations />} />
-            </Routes>
-          </main>
-          <Footer />
-          
-          {/* Scroll to Top Button */}
-          <Zoom in={showScrollTop}>
-            <Fab
-              color="primary"
-              size="medium"
-              onClick={scrollToTop}
-              sx={{
-                position: 'fixed',
-                bottom: 24,
-                right: 24,
-                zIndex: 1000,
-                bgcolor: '#5C4033',
-                '&:hover': {
-                  bgcolor: '#4a3329'
-                }
-              }}
-              aria-label="Scroll to top"
-            >
-              <KeyboardArrowUp />
-            </Fab>
-          </Zoom>
-        </div>
-      </Router>
-    </ErrorBoundary>
+    <TranslationContext.Provider value={{ lang, setLang, t }}>
+      <ColorModeContext.Provider value={colorMode}>
+        <ThemeProvider theme={getTheme(mode)}>
+          <CssBaseline />
+          <ErrorBoundary>
+            <Router>
+              <div
+                className="App"
+                style={{
+                  minHeight: '100vh',
+                  background: "linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('/feast-day-carmerlites.jpg')",
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center center',
+                  backgroundAttachment: 'fixed',
+                }}
+              >
+                <Header />
+                <NavBar />
+                <main style={{ padding: '2rem', maxWidth: 1200, margin: '0 auto' }}>
+                  <Breadcrumbs />
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/bishops-messages" element={<BishopsMessages />} />
+                    <Route path="/history" element={<DioceseHistory />} />
+                    <Route path="/commissions" element={<Commissions />} />
+                    <Route path="/parishes-deaneries" element={<ParishesDeaneries />} />
+                    <Route path="/mass-broadcasts-media" element={<MassBroadcastsMedia />} />
+                    <Route path="/gallery-general" element={<GalleryGeneral />} />
+                    <Route path="/clerical-gallery" element={<ClericalGallery />} />
+                    <Route path="/contact" element={<ContactUs />} />
+                    <Route path="/factory" element={<DiocesanFactory />} />
+                    <Route path="/pastoral-centre" element={<MutarePastoralCentre />} />
+                    <Route path="/religious-orders" element={<ReligiousOrders />} />
+                    <Route path="/jubilee-pilgrimage" element={<JubileePilgrimage />} />
+                    <Route path="/news" element={<News />} />
+                    <Route path="/vocations" element={<Vocations />} />
+                    <Route path="/donate" element={<Donate />} />
+                  </Routes>
+                </main>
+                <Footer />
+                {/* Scroll to Top Button */}
+                <Zoom in={showScrollTop}>
+                  <Fab
+                    color="primary"
+                    size="medium"
+                    onClick={scrollToTop}
+                    sx={{
+                      position: 'fixed',
+                      bottom: 24,
+                      right: 24,
+                      zIndex: 1000,
+                      bgcolor: '#5C4033',
+                      '&:hover': {
+                        bgcolor: '#4a3329'
+                      }
+                    }}
+                    aria-label="Scroll to top"
+                  >
+                    <KeyboardArrowUp />
+                  </Fab>
+                </Zoom>
+              </div>
+            </Router>
+          </ErrorBoundary>
+        </ThemeProvider>
+      </ColorModeContext.Provider>
+    </TranslationContext.Provider>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import WorkInProgress from './WorkInProgress';
+import WorkInProgress from './components/WorkInProgress/WorkInProgress';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 

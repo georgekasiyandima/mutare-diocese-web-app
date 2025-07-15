@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import './App.css';
+import '../../App.css';
 
 const Header: React.FC = () => {
   const theme = useTheme();

@@ -17,8 +17,8 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import TranslateIcon from '@mui/icons-material/Translate';
 import IconButton from '@mui/material/IconButton';
-import './App.css';
-import { ColorModeContext, TranslationContext } from './App';
+import '../../App.css';
+import { ColorModeContext, TranslationContext } from '../../App';
 
 const navLinks = [
   { label: 'Home', path: '/' },

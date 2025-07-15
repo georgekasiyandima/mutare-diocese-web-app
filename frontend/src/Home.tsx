@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import { Link as RouterLink } from 'react-router-dom';
 import { TranslationContext } from './App';
 import HeroSection from './components/HomeSection/HeroSection';
+import JubileeThemeSection from './components/HomeSection/JubileeThemeSection';
 
 const JUBILEE = {
   year: 2025,
@@ -43,69 +44,7 @@ const Home: React.FC = () => {
     <Box sx={{ maxWidth: 1400, mx: 'auto' }}>
       <HeroSection />
 
-      {/* Jubilee/Theme Section */}
-      <Box 
-        display="flex" 
-        flexDirection={{ xs: 'column', md: 'row' }} 
-        alignItems="center" 
-        gap={4} 
-        sx={{ 
-          justifyContent: 'center',
-          mb: { xs: 4, md: 6 },
-          px: { xs: 2, md: 0 }
-        }}
-      >
-        <Box 
-          flexShrink={0} 
-          textAlign="center" 
-          sx={{
-            background: 'linear-gradient(135deg, #fffbe6 60%, #bfa14a22 100%)',
-            border: '3px solid #bfa14a',
-            borderRadius: 4,
-            boxShadow: '0 4px 16px rgba(191,161,74,0.15)',
-            p: { xs: 2, md: 3 },
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            mb: { xs: 2, md: 0 },
-            '&:hover': {
-              transform: 'scale(1.02)',
-              transition: 'transform 0.3s ease'
-            }
-          }}
-        >
-          <img 
-            src={JUBILEE.logo} 
-            alt={`Jubilee ${JUBILEE.year} Logo - ${JUBILEE.theme}`} 
-            style={{ 
-              width: isMobile ? 120 : 160, 
-              height: isMobile ? 120 : 160, 
-              objectFit: 'contain', 
-              marginBottom: 12, 
-              filter: 'drop-shadow(0 4px 12px #bfa14a88)' 
-            }} 
-          />
-          <Typography 
-            variant={isMobile ? 'h6' : 'h5'} 
-            color="#5C4033" 
-            fontWeight={700} 
-            fontFamily="Lora, serif"
-          >
-            Jubilee {JUBILEE.year}: {JUBILEE.theme}
-          </Typography>
-        </Box>
-        <Typography 
-          variant="body1" 
-          color="text.secondary" 
-          sx={{ 
-            textAlign: 'center',
-            maxWidth: 600,
-            px: { xs: 2, md: 0 }
-          }}
-        >
-          {JUBILEE.description}
-        </Typography>
-      </Box>
+      <JubileeThemeSection />
 
       {/* Feast Day Section */}
       <Box 

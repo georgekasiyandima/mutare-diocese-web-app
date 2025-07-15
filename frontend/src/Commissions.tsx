@@ -10,7 +10,7 @@ import {
   Chip,
   Typography,
 } from '@mui/material';
-import { ArrowForward } from '@mui/icons-material';
+import { ArrowForward, People } from '@mui/icons-material';
 import { commissions, Commission, iconMap } from './constants/commissions';
 import CommissionsHeroSection from './components/CommissionsSection/CommissionsHeroSection';
 import FeaturedCommissionSection from './components/CommissionsSection/FeaturedCommissionSection';
@@ -83,7 +83,7 @@ const Commissions: React.FC = () => {
           
           <Grid container spacing={3}>
             {commissions.map((commission) => {
-              const IconComponent = iconMap[commission.icon] || iconMap.default;
+              const IconComponent = (iconMap as any)[commission.iconName] || People;
               return (
                 <Grid item xs={12} sm={6} md={4} key={commission.id}>
                   <Card
@@ -103,7 +103,7 @@ const Commissions: React.FC = () => {
                     <CardMedia
                       component="img"
                       height="200"
-                      image={`/${commission.image}`}
+                      image={`/${commission.images[0] || 'default-commission.jpg'}`}
                       alt={`${commission.name} Commission`}
                       sx={{ objectFit: 'cover' }}
                     />

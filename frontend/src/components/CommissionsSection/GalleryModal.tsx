@@ -46,7 +46,7 @@ const GalleryModal: React.FC<GalleryModalProps> = React.memo(({
         <Box sx={{ width: '100%', textAlign: 'center', mb: 2 }}>
           <img
             src={`/${selectedCommission.images[galleryIndex]}`}
-            alt={`${selectedCommission.name} Gallery Image ${galleryIndex + 1}`}
+            alt={`${selectedCommission.name} Gallery ${galleryIndex + 1}`}
             style={{
               maxWidth: '100%',
               maxHeight: 400,

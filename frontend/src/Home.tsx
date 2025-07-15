@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { TranslationContext } from './App';
 import HeroSection from './components/HomeSection/HeroSection';
@@ -16,8 +16,6 @@ const JUBILEE_CAROUSEL_IMAGES = [
 ];
 
 const Home: React.FC = () => {
-  const { t } = useContext(TranslationContext);
-
   // Example: Using environment variable from .env
   // Access with process.env.REACT_APP_API_URL
   console.log('API URL:', process.env.REACT_APP_API_URL);

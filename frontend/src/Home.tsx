@@ -11,6 +11,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { TranslationContext } from './App';
 import HeroSection from './components/HomeSection/HeroSection';
 import JubileeThemeSection from './components/HomeSection/JubileeThemeSection';
+import QuickFactsSection from './components/HomeSection/QuickFactsSection';
 
 const JUBILEE = {
   year: 2025,
@@ -190,46 +191,7 @@ const Home: React.FC = () => {
         </Box>
       </Box>
 
-      {/* Quick Facts Section */}
-      <Box sx={{ mb: { xs: 4, md: 6 }, px: { xs: 2, md: 0 } }}>
-        <Typography 
-          variant={isMobile ? 'h6' : 'h5'} 
-          color="#5C4033" 
-          fontWeight={700} 
-          fontFamily="Lora, serif" 
-          sx={{ mb: 3, textAlign: 'center' }}
-        >
-          Quick Facts
-        </Typography>
-        <Grid container spacing={2} justifyContent="center">
-          {FACTS.map((fact) => (
-            <Grid item component="div" xs={12} sm={6} md={4} key={String(fact.label)} {...({ item: true } as GridProps)}>
-              <Card 
-                sx={{ 
-                  background: 'rgba(255,255,255,0.95)', 
-                  borderLeft: '5px solid #bfa14a', 
-                  borderRadius: 2, 
-                  boxShadow: 1,
-                  '&:hover': {
-                    transform: 'translateY(-2px)',
-                    boxShadow: '0 4px 12px rgba(191,161,74,0.2)',
-                    transition: 'all 0.3s ease'
-                  }
-                }}
-              >
-                <CardContent>
-                  <Typography variant="subtitle2" color="#5C4033" fontWeight={700} gutterBottom>
-                    {fact.label}
-                  </Typography>
-                  <Typography variant="h6" color="text.primary">
-                    {fact.value}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
+      <QuickFactsSection />
 
       {/* Call to Action / Navigation */}
       <Box 

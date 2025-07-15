@@ -1,11 +1,11 @@
 import React, { useState, useEffect, createContext, useMemo } from 'react';
 import './App.css';
-import Header from './Header';
-import NavBar from './NavBar';
+import Header from './components/Header/Header';
+import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import History from './History';
 import Home from './Home';
-import Footer from './Footer';
+import Footer from './components/Footer/Footer';
 import ContactUs from './ContactUs';
 import MutarePastoralCentre from './MutarePastoralCentre';
 import JubileePilgrimage from './JubileePilgrimage';
@@ -14,9 +14,9 @@ import Commissions from './Commissions';
 import Donate from './Donate';
 import { Box, Card, Typography, Fab, Zoom, ThemeProvider, CssBaseline } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
-import WorkInProgress from './WorkInProgress';
+import WorkInProgress from './components/WorkInProgress/WorkInProgress';
 import ErrorBoundary from './ErrorBoundary';
-import Breadcrumbs from './Breadcrumbs';
+import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import Vocations from './Vocations';
 import { getTheme } from './theme';
 
